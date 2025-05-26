@@ -1,0 +1,65 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ollama
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ollama
+  namespace: ollama
+spec:
+  replicas: 1 # You can adjust the number of replicas as needed
+  selector:
+    matchLabels:
+      app: ollama
+  template:
+    metadata:
+      labels:
+        app: ollama
+    spec:
+      nodeSelector:
+        cloud.google.com/gke-spot: "true" # Target Spot VMs
+        cloud.google.com/gke-accelerator: nvidia-tesla-t4
+      containers:
+        - name: ollama
+          image: sdas92/ollama-llama3.2-mxbai-embed:v1 # Use the desired image
+          ports:
+            - containerPort: 11434 # The default port Open Web UI listens on
+          resources:
+            requests:
+              memory: "1Gi"
+              cpu: "0.25"
+              #ephemeral-storage: 8Gi
+              nvidia.com/gpu: 1 # Request 1 GPU (if using NVIDIA GPUs)
+            limits:
+              memory: "8Gi"
+              cpu: "2"
+              #ephemeral-storage: 32Gi
+              nvidia.com/gpu: 1 # Limit to 1 GPU
+      tolerations:
+      - key: "cloud.google.com/gke-spot"
+        operator: "Equal"
+        value: "true"
+        effect: "NoSchedule"
+      - key: "nvidia.com/gpu" # Toleration for the GPU taint
+        operator: "Exists"
+        effect: "NoSchedule"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: ollama-service
+  namespace: ollama # Replace with your namespace
+spec:
+  type: ClusterIP # LoadBalancer Or ClusterIP for internal access, or Ingress
+  selector:
+    app: ollama
+  ports:
+  - protocol: TCP
+    port: 80 # Port the service will listen on
+    targetPort: 11434 # Port LiteLLM container is listening on

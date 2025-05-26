@@ -1,0 +1,89 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: adk
+  namespace: adk
+spec:
+  replicas: 1 # You can adjust the number of replicas as needed
+  selector:
+    matchLabels:
+      app: adk
+  template:
+    metadata:
+      labels:
+        app: adk
+    spec:
+      nodeSelector:
+        cloud.google.com/gke-spot: "true" # Target Spot VMs
+      containers:
+        - name: adk
+          image: sdas92/law-ai-adk:v1 # Use the desired image
+          ports:
+            - containerPort: 8000 # The default port Open Web UI listens on
+          env:
+            - name: OPENAI_BASE_URL
+              value: "http://litellm-service.litellm.svc.cluster.local"
+            - name: OPENAI_API_KEY  # Name of the environment variable in the container
+              valueFrom:
+                secretKeyRef:
+                  name: litellm-api-key  # Name of the Secret
+                  key: daslearning
+          resources:
+            requests:
+              memory: "0.5Gi"
+              cpu: "0.25"
+              #ephemeral-storage: 4Gi
+            limits:
+              memory: "4Gi"
+              cpu: "1"
+              #ephemeral-storage: 16Gi
+      tolerations:
+      - key: "cloud.google.com/gke-spot"
+        operator: "Equal"
+        value: "true"
+        effect: "NoSchedule"
+
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: adk-gw-int-svc
+  namespace: adk
+spec:
+  selector:
+    app: adk
+  ports:
+  - port: 8000
+    targetPort: 8000
+
+---
+
+kind: Gateway
+apiVersion: gateway.networking.k8s.io/v1beta1
+metadata:
+  name: adk-gw
+  namespace: adk
+spec:
+  gatewayClassName: gke-l7-global-external-managed
+  listeners:
+  - name: http
+    protocol: HTTP
+    port: 80
+
+---
+
+kind: HTTPRoute
+apiVersion: gateway.networking.k8s.io/v1beta1
+metadata:
+  name: adk-gw-routes
+  namespace: adk
+spec:
+  parentRefs:
+  - kind: Gateway
+    name: adk-gw
+  rules:
+  - backendRefs:
+    - name: adk-gw-int-svc
+      port: 8000

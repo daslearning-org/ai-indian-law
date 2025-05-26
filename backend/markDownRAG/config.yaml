@@ -1,0 +1,9 @@
+model_list:
+
+  - model_name: "indian-law-llm"
+    litellm_params:
+      model: "law-llm/indian"
+
+litellm_settings:
+  custom_provider_map:
+  - {"provider": "law-llm", "custom_handler": law_ai.law_llm}

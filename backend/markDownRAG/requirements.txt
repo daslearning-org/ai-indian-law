@@ -1,0 +1,8 @@
+langchain
+langchain-ollama
+langchain-chroma
+pandas
+langchain-community
+unstructured[md]
+nltk
+litellm[proxy]
