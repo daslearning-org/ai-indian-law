@@ -9,6 +9,7 @@ You can run it on [Google Colab](https://colab.research.google.com/) and you can
 
 ### 🚀 Run it on Google Colab
 You can access [Google Colab](https://colab.research.google.com/) for free if you have a Google/Gmail account. <br>
+You can download the [code](./colab/ai_law_ollama.ipynb) & run it or you can directly open it with below option. <br>
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/daslearning-org/ai-indian-law/blob/main/colab/ai_law_ollama.ipynb)
 
 ### ☸️ Run it on Kubernetes (example is on GKE)
