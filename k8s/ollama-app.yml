@@ -21,7 +21,7 @@ spec:
         app: ollama
     spec:
       nodeSelector:
-        cloud.google.com/gke-spot: "true" # Target Spot VMs
+        #cloud.google.com/gke-spot: "true" # Target Spot VMs
         cloud.google.com/gke-accelerator: nvidia-tesla-t4
       containers:
         - name: ollama
@@ -39,14 +39,14 @@ spec:
               cpu: "2"
               #ephemeral-storage: 32Gi
               nvidia.com/gpu: 1 # Limit to 1 GPU
-      tolerations:
-      - key: "cloud.google.com/gke-spot"
-        operator: "Equal"
-        value: "true"
-        effect: "NoSchedule"
-      - key: "nvidia.com/gpu" # Toleration for the GPU taint
-        operator: "Exists"
-        effect: "NoSchedule"
+      #tolerations:
+      #- key: "cloud.google.com/gke-spot"
+      #  operator: "Equal"
+      #  value: "true"
+      #  effect: "NoSchedule"
+      #- key: "nvidia.com/gpu" # Toleration for the GPU taint
+      #  operator: "Exists"
+      #  effect: "NoSchedule"
 
 ---
 

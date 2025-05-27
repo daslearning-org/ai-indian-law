@@ -20,8 +20,8 @@ spec:
       labels:
         app: litellm
     spec:
-      nodeSelector:
-        cloud.google.com/gke-spot: "true" # Target Spot VMs
+      #nodeSelector:
+      #  cloud.google.com/gke-spot: "true" # Target Spot VMs
       containers:
         - name: ollama
           image: sdas92/law-litellm:v1 # Use the desired image
@@ -39,11 +39,11 @@ spec:
               memory: "4Gi"
               cpu: "1"
               #ephemeral-storage: 16Gi
-      tolerations:
-      - key: "cloud.google.com/gke-spot"
-        operator: "Equal"
-        value: "true"
-        effect: "NoSchedule"
+      #tolerations:
+      #- key: "cloud.google.com/gke-spot"
+      #  operator: "Equal"
+      #  value: "true"
+      #  effect: "NoSchedule"
 
 
 ---
