@@ -5,7 +5,11 @@ This AI ChatBot is designed to be **private** and can answer your queries on Ind
 Coming Soon....
 
 ## 📦 Quickstart Guide
-If you want to deploy this complete application on the Container World like Docker, Kubernetes etc. you may follow the below steps.
+You can run it on [Google Colab](https://colab.research.google.com/) and you can run it on a `Free` GPU machine with the available [code](./colab/ai_law_ollama.ipynb). If you want to deploy this complete application on the Container World like Docker, Kubernetes etc. you may follow the next steps.
+
+### 🚀 Run it on Google Colab
+You can access [Google Colab](https://colab.research.google.com/) for free if you have a Google/Gmail account. <br>
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/daslearning-org/ai-indian-law/blob/main/colab/ai_law_ollama.ipynb)
 
 ### ☸️ Run it on Kubernetes (example is on GKE)
 The example is on GKE, but you can replicate it on any K8S environment. You need to change (or remove) some parameters `tolerations`, `gke-accelerator`, `gke-spot` etc. in the YML files in [k8s](./k8s/) directory.
