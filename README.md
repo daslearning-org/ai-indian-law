@@ -4,6 +4,11 @@ This AI ChatBot is designed to be **private** and can answer your queries on Ind
 ## 📽️ Demo
 Coming Soon....
 
+## ⚠️ Disclaimer
+This AI application is creating its own `RAG` database based on two markdown files: `Indian Constitution` & `Bharatiya Nyaya Sanhita (IPC)` locaded [here](./backend/markDownRAG/markdown_files/). This markdown files were generated using the [docling project](https://github.com/docling-project/docling) from the PDF files which are publicly available. The author is not responsible for any wrong information given by this AI Agent.
+
+------------------
+
 ## 📦 Quickstart Guide
 You can run it on [Google Colab](https://colab.research.google.com/) and you can run it on a `Free` GPU machine with the available [code](./colab/ai_law_ollama.ipynb). If you want to deploy this complete application on the Container World like Docker, Kubernetes etc. you may follow the next steps.
 
