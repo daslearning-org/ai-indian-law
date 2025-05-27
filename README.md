@@ -2,7 +2,8 @@
 This AI ChatBot is designed to be **private** and can answer your queries on Indian Constitution & Indian Penal Code (IPC). This app is using Google ADK for the frontend & [LiteLlm](./backend/markDownRAG/) wrapper which is build with `Ollama` LLMs which are namely `llama3.2` & `mxbai-embed-large`.
 
 ## 📽️ Demo
-Coming Soon....
+You can click on the below Image or this [Youtube Link](https://www.youtube.com/watch?v=gjEXywPBC0Q) to see the demo. Please let me know in the comments, how do you feel about this App.
+[![AI-LAW-Chatbot](https://img.youtube.com/vi/gjEXywPBC0Q/sddefault.jpg)](https://www.youtube.com/watch?v=gjEXywPBC0Q)
 
 ## ⚠️ Disclaimer
 This AI application is creating its own `RAG` database based on two markdown files: `Indian Constitution` & `Bharatiya Nyaya Sanhita (IPC)` locaded [here](./backend/markDownRAG/markdown_files/). This markdown files were generated using the [docling project](https://github.com/docling-project/docling) from the PDF files which are publicly available. The author is not responsible for any wrong information given by this AI Agent.
