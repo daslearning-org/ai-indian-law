@@ -17,7 +17,7 @@ spec:
       #  cloud.google.com/gke-spot: "true" # Target Spot VMs
       containers:
         - name: adk
-          image: sdas92/law-ai-adk:v1 # Use the desired image
+          image: sdas92/law-ai-adk:v2 # Use the desired image
           ports:
             - containerPort: 8000 # The default port Open Web UI listens on
           env:
