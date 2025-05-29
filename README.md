@@ -74,7 +74,7 @@ curl -X POST http://localhost:4000/chat/completions -H 'Content-Type: applicatio
 
 3. Run the UI & again use the contair IP `litellm-rag` in the OpenAI host URL insread of `localhost`
 ```bash
-docker pull sdas92/law-ai-adk:v1
+docker pull sdas92/law-ai-adk:v2
 
 docker run -d -p 8000:8000 -e OPENAI_BASE_URL="http://your-litellm-host:4000" -e OPENAI_API_KEY="sk-1234" --name law-ui sdas92/law-ai-adk:v2 # use litellm container IP in the URL
 ```
