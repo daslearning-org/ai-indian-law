@@ -76,7 +76,7 @@ curl -X POST http://localhost:4000/chat/completions -H 'Content-Type: applicatio
 ```bash
 docker pull sdas92/law-ai-adk:v1
 
-docker run -d -p 8000:8000 -e OPENAI_BASE_URL="http://your-litellm-host:4000" -e OPENAI_API_KEY="sk-1234" --name law-ui sdas92/law-ai-adk:v1 # use litellm container IP in the URL
+docker run -d -p 8000:8000 -e OPENAI_BASE_URL="http://your-litellm-host:4000" -e OPENAI_API_KEY="sk-1234" --name law-ui sdas92/law-ai-adk:v2 # use litellm container IP in the URL
 ```
 
 4. Open your browser & type `http://localhost:8000` to chat with the AI Model.
