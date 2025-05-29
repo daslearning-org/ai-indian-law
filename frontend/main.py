@@ -28,7 +28,7 @@ app: FastAPI = get_fast_api_app(
 # Serve the modified UI
 STATIC_DIR = Path("static")
 app.mount(
-    "/static", StaticFiles(directory=STATIC_DIR, html=True), name="static"
+    "/", StaticFiles(directory=STATIC_DIR, html=True), name="static"
 )
 
 @app.get("/")
